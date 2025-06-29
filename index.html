@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hein & Raeesa Wedding</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', serif;
+      background: #f6f6f6;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header, .content, .footer {
+      padding: 2rem;
+      text-align: center;
+    }
+    header {
+      background-color: #fff;
+      padding-top: 4rem;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .initials {
+      font-size: 2rem;
+      letter-spacing: 4px;
+      margin-bottom: 2rem;
+    }
+    .rsvp-button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .rsvp-button:hover {
+      background-color: #444;
+    }
+    .content {
+      background-color: #fafafa;
+    }
+    .story {
+      max-width: 600px;
+      margin: auto;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    .ceremony {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .countdown {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 1rem auto 2rem auto;
+      max-width: 400px;
+    }
+    .rsvp-form {
+      display: none;
+      margin-top: 2rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .rsvp-form input, .rsvp-form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .footer {
+      font-size: 0.9rem;
+      margin-top: auto;
+      background-color: #fff;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .rsvp-button { width: 100%; }
+      .countdown { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>HEIN & RAEESA</h1>
+    <div class="initials">H & R</div>
+    <button class="rsvp-button" onclick="toggleForm()">RSVP Here</button>
+  </header>
+
+  <div class="content">
+    <div class="story">
+      <h2>A WHIRLWIND ROMANCE</h2>
+      <p>Chris & Donna were both in the right place at the right time. From the minute they met, they felt an instant connection.</p>
+      <p>Moments of only nothing but happiness and they're excited to start their next chapter of their relationship - as a married couple.</p>
+    </div>
+
+    <div class="ceremony">
+      JOIN THEIR INTIMATE CEREMONY.<br>
+      3:00 PM onwards<br>
+      October 10, 2025<br>
+      WeetNogNie Resort<br>
+      123 Anywhere St., Klerksdorp, ST<br>
+      <em>Note: No Children Allowed.</em>
+    </div>
+
+    <div class="countdown" id="countdown">
+      Countdown loading...
+    </div>
+
+    <div class="rsvp-form" id="form">
+      <form action="mailto:earlyngreen365@gmail.com" method="post" enctype="text/plain">
+        <label for="name">Name(s) of Attendee(s):</label>
+        <input type="text" name="attendees" id="name" placeholder="John & Jane Doe" required>
+        <button type="submit">Submit RSVP</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer">
+    THEY'RE EXCITED TO SEE YOU THERE!<br>
+    RSVP by September 1
+  </div>
+
+  <script>
+    function toggleForm() {
+      const form = document.getElementById('form');
+      form.style.display = form.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Countdown Timer
+    const countdown = document.getElementById('countdown');
+    const targetDate = new Date("October 10, 2025 15:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "🎉 The big day has arrived!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s until the wedding 💍`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
